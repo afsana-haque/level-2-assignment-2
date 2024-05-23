@@ -4,7 +4,8 @@ import { ProductController } from './product.controller';
 
 const router = express.Router();
 
-//will call controller func
+//will call controller function
+
 router.post('/', ProductController.createProduct);
 
 router.get('/:productId', ProductController.getSingleProduct);

@@ -100,7 +100,7 @@ const createProduct = async (req: Request, res: Response) => {
       });
     } catch (err) {
       console.log(err);
-    }
+    };
   };
 
   const updateSingleProduct= async (req: Request, res: Response) => {
@@ -139,7 +139,7 @@ const createProduct = async (req: Request, res: Response) => {
     getAllProducts,
     getSingleProduct,
     deleteProduct,
-    updateSingleProduct
+    updateSingleProduct,
     
  
   };

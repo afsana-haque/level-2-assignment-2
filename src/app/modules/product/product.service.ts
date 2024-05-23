@@ -20,6 +20,7 @@ const createProductsIntoDB = async (product: Product) => {
     const result = await ProductModel.findByIdAndDelete({ _id });
   return result;
   };
+  
   const updateSingleProductValue = async (_id: string, updatedData: Product) => {
     const result = await ProductModel.findByIdAndUpdate(_id, updatedData, {
       new: true,
