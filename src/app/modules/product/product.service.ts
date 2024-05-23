@@ -11,13 +11,29 @@ const createProductsIntoDB = async (product: Product) => {
     return result;
   };
   
-  const getSingleProductsFromDB = async (id: string) => {
-    const result = await ProductModel.findOne({ id });
+  const getSingleProductsFromDB = async ( _id : string) => {
+    const result = await ProductModel.findOne({ _id });
     return result;
   };
 
-  const deleteProductFromDB = async (id: string) => {
-    const result = await ProductModel.updateOne({ id }, { isDeleted: true });
+  const deleteProductFromDB = async (_id: string) => {
+    const result = await ProductModel.findByIdAndDelete({ _id });
+  return result;
+  };
+  const updateSingleProductValue = async (_id: string, updatedData: Product) => {
+    const result = await ProductModel.findByIdAndUpdate(_id, updatedData, {
+      new: true,
+    });
+    return result;
+  };
+
+  const searchProductValue = async (searchTerm: string) => {
+    const result = await ProductModel.find({
+      $or: [
+        { name: { $regex: searchTerm, $options: "i" } },
+        { description: { $regex: searchTerm, $options: "i" } },
+      ],
+    });
     return result;
   };
   
@@ -25,5 +41,7 @@ const createProductsIntoDB = async (product: Product) => {
     createProductsIntoDB,
     getAllProductsFromDB,
     getSingleProductsFromDB,
-    deleteProductFromDB 
+    deleteProductFromDB,
+    updateSingleProductValue,
+    searchProductValue
   };
