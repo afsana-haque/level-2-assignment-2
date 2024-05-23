@@ -4,17 +4,18 @@ import { OrderSchemaModel } from "./order.model";
 
 
 const createOrderDB = async (order: OrderItem) => {
+
   const product = await ProductModel.findById(order.productId);
 
   console.log("my product", product);
 
   if (!product) {
     throw Error("no product found");
-  }
+  };
 
   if (order.quantity > product.inventory.quantity) {
     throw Error("Insufficient quantity available in inventory");
-  }
+  };
 
   product.inventory.quantity -= order.quantity; // update inventory quantity
   product.inventory.inStock = product.inventory.quantity > 0; // update stock status

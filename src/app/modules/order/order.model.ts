@@ -24,4 +24,6 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
+// Create and export the Order model
+
 export const OrderSchemaModel = mongoose.model("Order", orderSchema);
