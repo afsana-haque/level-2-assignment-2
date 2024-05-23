@@ -15,7 +15,7 @@ const createOrder = async (req: Request, res: Response) => {
         message: "something went wrong",
         error: error.details,
       });
-    }
+    };
 
     const result = await OrderServices.createOrderDB(value);
 
@@ -31,9 +31,11 @@ const createOrder = async (req: Request, res: Response) => {
       message: err.message || "something went wrong",
       error: err,
     });
-  }
+  };
 };
 
+
+// get all orders
 const getAllOrders = async (req: Request, res: Response) => {
   try {
     const userEmail = req.query.email as string;
@@ -54,13 +56,13 @@ const getAllOrders = async (req: Request, res: Response) => {
         message: "Orders fetched successfully!",
         data: result,
       });
-    }
+    };
   } catch (err: any) {
     res.status(500).json({
       success: false,
       message: err.message || "Something went wrong!",
     });
-  }
+  };
 };
 
 export const OrderController = {
